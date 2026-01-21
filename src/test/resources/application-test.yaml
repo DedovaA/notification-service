@@ -1,0 +1,13 @@
+spring:
+  mail:
+    host: localhost
+    port: 3025 #  GreenMail
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+  kafka:
+    consumer:
+      auto-offset-reset: earliest

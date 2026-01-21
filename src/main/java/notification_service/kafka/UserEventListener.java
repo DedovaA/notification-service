@@ -15,8 +15,8 @@ public class UserEventListener {
     public void onMessage(UserEvent event) {
 
         String text = switch (event.operation()) {
-            case DELETE -> "Здравствуйте! Ваш аккаунт был удалён.";
-            case CREATE -> "Здравствуйте! Ваш аккаунт на сайте ваш сайт был успешно создан.";
+            case DELETE -> "Ваш аккаунт был удалён.";
+            case CREATE -> "Ваш аккаунт был успешно создан.";
         };
 
         emailSender.send(
