@@ -86,6 +86,19 @@
 			<version>4.2.2</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- Основная зависимость для Swagger UI и генерации документации OpenAPI 3 -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.8.15</version> <!-- Актуальная версия для Spring Boot 3.5.x на начало 2026 года -->
+		</dependency>
+
+		<!-- Стартер Spring HATEOAS для поддержки гипермедиа -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+			<!-- Версия подтянется автоматически из parent Spring Boot 3.5.9 -->
+		</dependency>
 	</dependencies>
 
 	<build>
