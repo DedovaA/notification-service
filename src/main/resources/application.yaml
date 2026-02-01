@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8082 # Kafka port:8082
 
 spring:
   kafka:
@@ -16,7 +16,7 @@ spring:
 
   mail:
     host: localhost
-    port: 1025
+    port: 1025 # MailHog localhost:8025
     username:
     password:
     properties:
