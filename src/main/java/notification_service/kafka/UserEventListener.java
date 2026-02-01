@@ -8,15 +8,14 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class UserEventListener {
-
     private final EmailSender emailSender;
 
     @KafkaListener(topics = "${app.kafka.topic}")
     public void onMessage(UserEvent event) {
 
         String text = switch (event.operation()) {
-            case DELETE -> "Ваш аккаунт был удалён.";
-            case CREATE -> "Ваш аккаунт был успешно создан.";
+            case DELETE -> "Ваш аккаунт " + event.email() + " был удалён.";
+            case CREATE -> "Ваш аккаунт " + event.email() + " был успешно создан.";
         };
 
         emailSender.send(
