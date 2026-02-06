@@ -1,4 +1,4 @@
-package notification_service.api;
+package aston.notification_service.api;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

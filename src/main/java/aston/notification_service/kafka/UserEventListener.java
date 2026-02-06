@@ -1,7 +1,7 @@
-package notification_service.kafka;
+package aston.notification_service.kafka;
 
 import lombok.RequiredArgsConstructor;
-import notification_service.mail.EmailSender;
+import aston.notification_service.mail.EmailSender;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 

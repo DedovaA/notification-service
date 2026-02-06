@@ -1,4 +1,4 @@
-package notification_service.mail;
+package aston.notification_service.mail;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

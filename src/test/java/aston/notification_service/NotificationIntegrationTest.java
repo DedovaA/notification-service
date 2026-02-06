@@ -1,17 +1,18 @@
-package notification_service;
+package aston.notification_service;
 
 import com.icegreen.greenmail.configuration.GreenMailConfiguration;
 import com.icegreen.greenmail.junit5.GreenMailExtension;
 import com.icegreen.greenmail.util.ServerSetupTest;
 import jakarta.mail.internet.MimeMessage;
-import notification_service.api.SendMailRequest;
-import notification_service.kafka.UserEvent;
+import aston.notification_service.api.SendMailRequest;
+import aston.notification_service.kafka.UserEvent;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -35,6 +36,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 class NotificationIntegrationTest {
 
     @Container
+    @ServiceConnection
     static final KafkaContainer kafka = new KafkaContainer(
             DockerImageName.parse("confluentinc/cp-kafka:7.5.0")
     );
@@ -44,6 +46,7 @@ class NotificationIntegrationTest {
         registry.add("spring.kafka.bootstrap-servers", kafka::getBootstrapServers);
         registry.add("spring.kafka.producer.key-serializer", () -> StringSerializer.class.getName());
         registry.add("spring.kafka.producer.value-serializer", () -> JsonSerializer.class.getName());
+        registry.add("app.kafka.topic", () -> "test-notification-topic");
     }
 
     @RegisterExtension
@@ -71,7 +74,7 @@ class NotificationIntegrationTest {
             assertThat(receivedMessages).hasSize(1);
             assertThat(receivedMessages[0].getAllRecipients()[0].toString()).isEqualTo("user@example.com");
             assertThat(receivedMessages[0].getSubject()).isEqualTo("Уведомление");
-            assertThat(receivedMessages[0].getContent().toString()).contains("Ваш аккаунт был успешно создан.");
+            assertThat(receivedMessages[0].getContent().toString()).contains("Ваш аккаунт " + event.email() + " был успешно создан.");
         });
     }
 
