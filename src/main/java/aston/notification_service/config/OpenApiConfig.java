@@ -1,4 +1,4 @@
-package notification_service.config;
+package aston.notification_service.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

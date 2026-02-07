@@ -1,33 +1,5 @@
-server:
-  port: 8082 # Kafka port:8082
-
 spring:
-  kafka:
-    bootstrap-servers: localhost:9092
-    consumer:
-      group-id: notification-service
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.trusted.packages: "*"
-        spring.json.value.default.type: notification_service.kafka.UserEvent
-        spring.json.use.type.headers: false
-
-  mail:
-    host: localhost
-    port: 1025 # MailHog localhost:8025
-    username:
-    password:
-    properties:
-      mail:
-        smtp:
-          auth: false
-          starttls:
-            enable: false
-
-app:
-  kafka:
-    topic: user.events.v2
-  mail:
-    from: no-reply@your-site.com
+  application:
+    name: notification-service
+  config:
+    import: "optional:configserver:http://localhost:8888"

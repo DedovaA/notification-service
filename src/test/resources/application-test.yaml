@@ -1,4 +1,7 @@
 spring:
+  cloud:
+    config:
+      enabled: false
   mail:
     host: localhost
     port: 3025 #  GreenMail
@@ -10,4 +13,18 @@ spring:
             enable: false
   kafka:
     consumer:
+      group-id: notification-test-group
       auto-offset-reset: earliest
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+app:
+  mail:
+    from: test@example.com
+#  kafka:
+#    topic: test-notification-topic
+
+eureka:
+  client:
+    enabled: false

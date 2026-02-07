@@ -1,10 +1,10 @@
-package notification_service.api;
+package aston.notification_service.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import notification_service.mail.EmailSender;
+import aston.notification_service.mail.EmailSender;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
